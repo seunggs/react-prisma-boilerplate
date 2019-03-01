@@ -56,18 +56,18 @@ This is a boilerplate project for:
     3. Go back to the root folder and then run `npm run dev`
     4. To run the Graphql Playground (localhost:4466/default/dev), set the Authorization header in the browser (obtain the token using `prisma token -e ../config/dev.env`)
 3. To deploy test:
-  * Prisma: `npm run deploy:prisma:test`
+    * Prisma: `npm run deploy:prisma:test`
 4. To deploy to production:
-  * Node: 
-    1. Make sure all ENV variables are set in Heroku: 
-      * Add server ENVs: /config/*.env
-      * Add client ENVs: /client/.env.development
-    2. Push everything to the staging server in git (make sure Heroku pipeline is set up):
-      1. `git commit -am "deploy"`
-      2. `git push`
-      3. Lastly, promote it to prod if staging looks good
-  * Prisma: `npm run deploy:prisma:prod`
-  * To run the Graphql Playground (see PRISMA_ENDPOINT in /config/prod.env), set the Authorization header in the browser (obtain the token using `prisma token -e ../config/prod.env`)
+    * Node: 
+      1. Make sure all ENV variables are set in Heroku: 
+          * Add server ENVs: /config/*.env
+          * Add client ENVs: /client/.env.development
+      2. Push everything to the staging server in git (make sure Heroku pipeline is set up):
+          1. `git commit -am "deploy"`
+          2. `git push`
+          3. Lastly, promote it to prod if staging looks good
+    * Prisma: `npm run deploy:prisma:prod`
+    * To run the Graphql Playground (see PRISMA_ENDPOINT in /config/prod.env), set the Authorization header in the browser (obtain the token using `prisma token -e ../config/prod.env`)
 5. To analyze the CRA bundle size:
     1. Inside /client, run: `npm run build`
     2. Open /build/bundle-stats.html
