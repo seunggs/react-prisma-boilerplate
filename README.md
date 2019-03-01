@@ -76,7 +76,7 @@ This is a boilerplate project for:
 ## 1) Prisma Dev Server Setup Instructions
 
 1. Clone the repository and create a new git repo.
-2. Run `yarn install` and then run `yarn upgrade`.
+2. Run `yarn install` and then run `yarn upgrade` in both in the root folder and /client.
 3. Create /config and create dev.env, test.env, and prod.env
   * dev.env example: 
     ```
