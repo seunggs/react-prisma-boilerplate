@@ -78,71 +78,71 @@ This is a boilerplate project for:
 1. Clone the repository and create a new git repo.
 2. Run `yarn install` and then run `yarn upgrade` in both in the root folder and /client.
 3. Create /config and create dev.env, test.env, and prod.env
-  * dev.env example: 
-    ```
-    PRISMA_ENDPOINT=http://localhost:4466/default/dev
-    PRISMA_SECRET=djfa89jpf2ijro
-    PRISMA_SERVER_HOST=localhost
-    JWT_SECRET=vkljxp89qpifkd7
-    ```
-  * test.env example: 
-    ```
-    PRISMA_ENDPOINT=http://localhost:4466/default/test
-    PRISMA_SECRET=djfa89jpf2ijro
-    PRISMA_SERVER_HOST=localhost
-    JWT_SECRET=vkljxp89qpifkd7
-    ```
-  * prod.env example: 
-    ```
-    PRISMA_ENDPOINT=[to be entered later once Prisma prod server is deployed]
-    PRISMA_SECRET=m9rdkas810dk389
-    PRISMA_SERVER_HOST=0.0.0.0
-    JWT_SECRET=gj8ape2jiflh89
-    ```
-  * Note: dev.env and test.env can have same values for PRISMA_SECRET, JWT_SECRET
-  * Add other env variables
-    ```
-    AUTH0_CLIENT_ID
-    AUTH0_CLIENT_SECRET
-    AUTH0_MANAGEMENT_API_CLIENT_ID
-    AUTH0_MANAGEMENT_API_CLIENT_SECRET
-    AWS_ACCESS_KEY_ID
-    AWS_SECRET_ACCESS_KEY
-    AWS_BUCKET
-    AWS_ENDPOINT
-    ```
+    * dev.env example: 
+      ```
+      PRISMA_ENDPOINT=http://localhost:4466/default/dev
+      PRISMA_SECRET=djfa89jpf2ijro
+      PRISMA_SERVER_HOST=localhost
+      JWT_SECRET=vkljxp89qpifkd7
+      ```
+    * test.env example: 
+      ```
+      PRISMA_ENDPOINT=http://localhost:4466/default/test
+      PRISMA_SECRET=djfa89jpf2ijro
+      PRISMA_SERVER_HOST=localhost
+      JWT_SECRET=vkljxp89qpifkd7
+      ```
+    * prod.env example: 
+      ```
+      PRISMA_ENDPOINT=[to be entered later once Prisma prod server is deployed]
+      PRISMA_SECRET=m9rdkas810dk389
+      PRISMA_SERVER_HOST=0.0.0.0
+      JWT_SECRET=gj8ape2jiflh89
+      ```
+    * Note: dev.env and test.env can have same values for PRISMA_SECRET, JWT_SECRET
+    * Add other env variables
+      ```
+      AUTH0_CLIENT_ID
+      AUTH0_CLIENT_SECRET
+      AUTH0_MANAGEMENT_API_CLIENT_ID
+      AUTH0_MANAGEMENT_API_CLIENT_SECRET
+      AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY
+      AWS_BUCKET
+      AWS_ENDPOINT
+      ```
 4. Setup Heroku server for "X-prisma-dev" and add an add-on called "Heroku Postgres".
 5. Download and open pgAdmin and create a new server for "X-prisma-dev". Fill out the server details from Heroku Postgres settings.
 6. Download and run Docker app.
 7. Run `npm i prisma -g` if Prisma doesn't exist globally already.
 8. Inside the root folder, run: `prisma init prisma`.
-  1. Select "Use existing database"
-  2. Postgres
-  3. No (empty db)
-  4. Fill out the connection info from Heroku Postgres (use SSL)
-  5. pick "Don’t generate" for language selection for prisma client
+    1. Select "Use existing database"
+    2. Postgres
+    3. No (empty db)
+    4. Fill out the connection info from Heroku Postgres (use SSL)
+    5. pick "Don’t generate" for language selection for prisma client
 9. Add `secret: ${env:PRISMA_SECRET}` to prisma.yml and update "endpoint" to `${env:PRISMA_ENDPOINT}`.
 10. Add `ssl: true` below `user` in docker-compose.yml.
 11. Follow the next steps as prompted with one exception (step 3):
-  1. `cd prisma`
-  2. `docker-compose up -d` (run the Prisma service locally)
-  3. `prisma deploy -e ../config/dev.env` (deploy the code to the Docker Prisma service)
-  * NOTE: If there's a connection issue (i.e. Could not connect to server at http://localhost:4466), try `docker-compose down -v --rmi all --remove-orphans` to completely remove the docker container and retry
+    1. `cd prisma`
+    2. `docker-compose up -d` (run the Prisma service locally)
+    3. `prisma deploy -e ../config/dev.env` (deploy the code to the Docker Prisma service)
+    * NOTE: If there's a connection issue (i.e. Could not connect to server at http://localhost:4466), try `docker-compose down -v --rmi all --remove-orphans` to completely remove the docker container and retry
 12. Check localhost:4466 (default port) to see if it's graphql playground is working properly. (if localhost doesn't work, try 127.0.0.1 after changing the endpoint in prisma.yml)
 13. Update the /prisma/datamodel.prisma to:
-  ```
-  type User {
-    id: ID! @unique
-    email: String! @unique
-    name: String
-    username: String @unique
-    picture: String
-    updatedAt: DateTime!
-    createdAt: DateTime!
-  }
-  ```
+    ```
+    type User {
+      id: ID! @unique
+      email: String! @unique
+      name: String
+      username: String @unique
+      picture: String
+      updatedAt: DateTime!
+      createdAt: DateTime!
+    }
+    ```
 14. Update /src/schema.graphql
-  * Copy 'type Query' and 'type Mutation' from /generated/prisma.graphql 
+    * Copy 'type Query' and 'type Mutation' from /generated/prisma.graphql 
 15. Update /client/utils/constants.js and /src/utils/constants.js
 
 
