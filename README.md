@@ -175,8 +175,8 @@ This is a boilerplate project for:
     1. Run `cd prisma` and then `prisma login`. Then click "Grant Permission".
     2. Run `prisma deploy -e ../config/prod.env`
     3. Move the "endpoint" filled out in prisma.yml to PRISMA_ENDPOINT in /config/prod.env and uncomment "endpoint" in prisma.yml.
-    4. In /prisma/docker-compose.yml, uncomment managementApiSecret, set it to `PRISMA_MANAGEMENT_API_SECRET`
-    5. Add PRISMA_MANAGEMENT_API_SECRET to /config/*.env, setting it to the value found in X-prisma-prd server -> config vars -> CONFIG -> managementApiSecret, which was set up via Prisma Heroku integration
+    4. In /prisma/docker-compose.yml, uncomment managementApiSecret, set it to `${PRISMA_MANAGEMENT_API_SECRET}`
+    5. Add PRISMA_MANAGEMENT_API_SECRET to /config/prod.env, setting it to the value found in X-prisma-prd server -> config vars -> CONFIG -> managementApiSecret, which was set up via Prisma Heroku integration
     6. Re-run `docker-compose up -d`
     7. Run `prisma deploy -e ../config/prod.env` again to check if all went well (you should see "Service is already up to date.").
     8. Check Prisma Cloud to see if the Service has been created.
