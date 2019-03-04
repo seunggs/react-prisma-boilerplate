@@ -13,7 +13,7 @@ const s3 = new aws.S3({
   endpoint: new aws.Endpoint(process.env.AWS_ENDPOINT)
 })
 
-export const uploadToS3 = async (prisma, folder, file, projectId) => {
+export const uploadToS3 = async (prisma, folder, file) => {
   if (!file) { 
     logger.error('ERROR: No file received.')
     return
@@ -32,20 +32,13 @@ export const uploadToS3 = async (prisma, folder, file, projectId) => {
   const url = response.Location
 
   // Sync with Prisma
-  const baseData = {
+  const data = {
     filename,
     mimetype,
     encoding,
     url,
   }
-  const data = projectId ? R.merge(baseData, {
-    project: {
-      connect: {
-        id: projectId
-      }
-    }
-  }) : baseData
-
+  
   const fileInPrisma = await prisma.mutation.createFile({ data })
 
   return fileInPrisma
