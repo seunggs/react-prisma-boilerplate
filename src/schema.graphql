@@ -12,8 +12,8 @@ type Query {
 
 type Mutation {
   # Custom
-  uploadFile(folder: String, file: Upload!, projectId: String, hero: Boolean): File!
-  uploadFiles(folder: String, files: [Upload!]!, projectId: String): [File!]!
+  uploadFile(folder: String, file: Upload!): File!
+  uploadFiles(folder: String, files: [Upload!]!): [File!]!
   renameFile(id: ID!, name: String!): File
 
   # Copy from generated schema
