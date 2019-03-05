@@ -19,16 +19,18 @@ export const history = createHistory()
 // Set up Auth service and put it on state so it's globally available
 const checkAuth = async () => {
   logger.info('Checking auth...')
+  const state = store.getState()
+  const dispatch = store.dispatch
   if (localStorage.getItem('isLoggedIn') === 'true') {
     try {
-      await auth().renewSession(store, client)
+      await auth().renewSession(state, dispatch, client)
       logger.info('Auth session renewed')
     } catch (err) {
       logger.error('Failed to renew session - logged out')
     }
   } else {
     // If not currently logged in, mark auth complete
-    store.dispatch(setAuthCompleted(true))
+    dispatch(setAuthCompleted(true))
   }
 }
 checkAuth()
